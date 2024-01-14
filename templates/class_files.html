@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Fichiers de la Classe {{ classe }}{% endblock %}
+
+{% block css %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/class-files-style.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1>Fichiers de la Classe {{ classe }}</h1>
+    
+    {% if current_user.is_authenticated %}
+        <p>Bienvenue, {{ current_user.username }}!</p>
+        <p>Vous pouvez télécharger les fichiers PDF suivants :</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom du Fichier</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pdf_file in pdf_files %}
+                    <tr>
+                        <td>{{ pdf_file }}</td>
+                        <td><a href="{{ url_for('download_file', classe=classe, filename=pdf_file) }}">Télécharger</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Connectez-vous pour accéder aux fichiers PDF.</p>
+    {% endif %}
+{% endblock %}

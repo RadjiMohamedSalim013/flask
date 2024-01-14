@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block css %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login-style.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1>Connexion</h1>
+
+    <form method="POST" action="{{ url_for('login') }}">
+        <label for="username">Nom d'utilisateur:</label>
+        <input type="text" name="username" required><br>
+
+        <label for="password">Mot de passe:</label>
+        <input type="password" name="password" required><br>
+
+        <input type="submit" value="Se connecter">
+    </form>
+{% endblock %}

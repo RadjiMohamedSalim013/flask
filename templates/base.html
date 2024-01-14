@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon Projet{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block css %} {% endblock %}
+</head>
+<body>
+
+<header>
+    <div class="gauche">
+        <h1>DOC NUMERIQUE</h1>
+    </div>
+    <div class="droite">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('login')}}">Se connecter</a></li>
+                <li><a href="{{ url_for('register')}}">S'inscrire</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+
+<footer>
+    <div class="gauche">
+        <p>Contactez-nous : contact@monprojet.com</p>
+    </div>
+    <div class="droite">
+        <nav>
+            <ul>
+                <li><a href="#">Politique de confidentialité</a></li>
+                <li><a href="#">Conditions d'utilisation</a></li>
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block css %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home-style.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1>Bienvenue sur la page d'accueil</h1>
+    
+    {% if current_user.is_authenticated %}
+        <p>Bienvenue, {{ current_user.username }}!</p>
+        <p>Choisissez votre classe :</p>
+        
+        <ul>
+            <li><a href="{{ url_for('class_files', classe='6eme') }}">6ème</a></li>
+            <li><a href="{{ url_for('class_files', classe='5eme') }}">5ème</a></li>
+            <li><a href="{{ url_for('class_files', classe='4eme') }}">4ème</a></li>
+            <!-- Ajoutez autant d'éléments li que nécessaire avec les liens vers les différentes classes -->
+        </ul>
+    {% else %}
+        <p>Connectez-vous pour accéder aux fichiers PDF.</p>
+    {% endif %}
+{% endblock %}
